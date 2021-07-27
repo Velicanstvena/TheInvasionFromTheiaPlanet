@@ -50,7 +50,7 @@ public class ShootingWeapon: MonoBehaviourPun
 
     private void Shoot()
     {
-        //photonView.RPC("OnShootParticle", RpcTarget.AllBuffered);
+        photonView.RPC("OnShootParticle", RpcTarget.AllBuffered);
         shootParticle.Play();
 
         RaycastHit hit;
@@ -61,12 +61,12 @@ public class ShootingWeapon: MonoBehaviourPun
 
             if (target != null)
             {
-                //target.CallTakeDamageRPC(damage);
-                target.TakeDamage(damage);
+                target.CallTakeDamageRPC(damage);
+                //target.TakeDamage(damage);
             }
 
-            //PhotonNetwork.Instantiate(impactParticle.name, hit.point, Quaternion.LookRotation(hit.normal), 0);
-            Instantiate(impactParticle, hit.point, Quaternion.LookRotation(hit.normal));
+            PhotonNetwork.Instantiate(impactParticle.name, hit.point, Quaternion.LookRotation(hit.normal), 0);
+            //Instantiate(impactParticle, hit.point, Quaternion.LookRotation(hit.normal));
         }
     }
 
